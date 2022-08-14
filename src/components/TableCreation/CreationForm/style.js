@@ -24,4 +24,8 @@ export const Button = styled.button`
     color: rgb(255,215,0);
     background-color: rgb(139,69,19);
     font-size: 15px;
+    &:hover {
+        cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"};
+    }
+    opacity: ${({ isDisabled }) => isDisabled ? "0.7" : "1"};
 `;

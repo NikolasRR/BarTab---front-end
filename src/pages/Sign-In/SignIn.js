@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { Container, LogInBar, Form, Input, Button, StyledLink } from "./style"
-import requests from "../../services/requests";
+import requests from "../../services/API/requests";
 
 function SignInScreen() {
     const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
 import { CointainerSignUp, Inputs, Form, Input, Button } from "./style";
-import requests from "../../services/requests";
+import requests from "../../services/API/requests";
 
 function SignUp() {
     const [isloading, setIsLoading] = useState(false);

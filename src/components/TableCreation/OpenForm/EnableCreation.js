@@ -4,7 +4,7 @@ function OpenFormButton({ setCreating }) {
     return (
         <BsFillPlusSquareFill
             onClick={() => setCreating(true)}
-            style={{ color: '#F95636', fontSize: '50px' }}
+            style={{ color: '#F95636', fontSize: '50px', cursor: 'pointer' }}
         />
     )
 }

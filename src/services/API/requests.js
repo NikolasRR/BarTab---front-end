@@ -27,8 +27,18 @@ async function postParticipants(tableId, data) {
 	return response;
 }
 
+async function getParticipants(tableId) {
+	const response = await api.get(`/participants/${tableId}/`, config);
+	return response;
+}
+
 async function postItems(tableId, data) {
 	const response = await api.post(`/items/${tableId}`, data, config);
+	return response;
+}
+
+async function getTableItems(tableId) {
+	const response = await api.get(`/items/${tableId}`, config);
 	return response;
 }
 
@@ -39,7 +49,9 @@ const requests = {
 	postTable,
 	getTable,
 	postParticipants,
-	postItems
+	getParticipants,
+	postItems,
+	getTableItems
 };
 
 export default requests;

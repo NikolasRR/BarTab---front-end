@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import requests from "../../../services/requests";
+import requests from "../../../services/API/requests";
 import { Form, Input, Button } from "./style";
 import TableDataContext from "../../../contexts/tableContext";
 
@@ -16,8 +16,14 @@ function CreationForm() {
     async function SubmitTable(e) {
         e.preventDefault();
         setLoading(true);
+
+        if(name.length === 0) {
+            alert("a name is required!");
+            setLoading(false);
+            return;
+        }
+
         try {
-            console.log("checkpoint 1");
             const response = await requests.postTable({ name: name });
             setTableData(response.data);
 
@@ -35,7 +41,7 @@ function CreationForm() {
                 onChange={e => setName(e.target.value)}
                 value={name}
             ></Input>
-            <Button disabled={loading} type="submit" >create</Button>
+            <Button isDisabled={loading} disabled={loading} type="submit">create</Button>
         </Form>
     )
 }

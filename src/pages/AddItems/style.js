@@ -29,7 +29,7 @@ export const CreateSection = styled.section`
     width: 250px;
 `;
 
-export const Participants = styled.section`
+export const Items = styled.section`
     height: 300px;
     width: 250px;
     display: flex;
