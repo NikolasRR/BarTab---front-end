@@ -36,7 +36,7 @@ function SignUp() {
                     <Form onSubmit={e => handleRegister(e)}>
                         <Input type="email" placeholder="e-mail" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
                         <Input type="password" placeholder="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} />
-                        <Input type="text" placeholder="name" value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} />
+                        <Input type="text" placeholder="first name" value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} />
                         <Button isDisabled={isloading} disabled={isloading} type="submit">sign up</Button>
                     </Form>
                     <StyledLink to="/sign-in">already registered? sign in</StyledLink>
