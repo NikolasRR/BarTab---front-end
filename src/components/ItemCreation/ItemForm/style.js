@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Section = styled.section`
     width: 250px;
-    min-height: 118px;
+    min-height: 141px;
     background-color: #D2691E;
     border-radius: 10px;
     margin-bottom: 5px;

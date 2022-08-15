@@ -4,28 +4,29 @@ export const Main = styled.main`
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: calC(100vh - 120px);
+    height: 100vh;
     background-color: #EEE8AA;
 `;
 
 export const Instruction = styled.p`
     font-family: 'Secular One', sans-serif;
     color: #F95636;
-    margin: 40px 0 15px 0;
+    margin: 30px 0 15px 0;
     font-size: 20px;
 `;
 
 export const SecondaryInstructions = styled.p`
     font-family: 'Secular One', sans-serif;
     color: #F95636;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
     font-size: 13px;
     text-align: center;
 `;
 
 export const CreateSection = styled.section`
-    height: 400px;
+    height: 370px;
     width: 250px;
+    margin-bottom: 10px;
 `;
 
 export const Participants = styled.section`
@@ -35,6 +36,11 @@ export const Participants = styled.section`
     align-items: center;
     flex-direction: column;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
 `;
 
 export const Options = styled.div`

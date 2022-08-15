@@ -4,14 +4,14 @@ export const Main = styled.main`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: calC(100vh - 120px);
+    height: calC(100% - 120px);
     background-color: #EEE8AA;
 `;
 
 export const Instruction = styled.p`
     font-family: 'Secular One', sans-serif;
     color: #F95636;
-    margin-bottom: 5px;
+    margin: 15px 0 5px 0;
     font-size: 20px;
     text-align: center;
 `;
@@ -28,6 +28,7 @@ export const CreateSection = styled.section`
     height: 400px;
     width: 250px;
     margin-left: calc(50vw - 125px);
+    margin-bottom: 10px;
 `;
 
 export const Items = styled.section`
@@ -37,6 +38,11 @@ export const Items = styled.section`
     align-items: center;
     flex-direction: column;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 `;
 
 export const Options = styled.div`

@@ -33,8 +33,13 @@ export const PerParticipant = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: scroll;
+    overflow-y: scroll;
     border-radius: 20px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 `;
 
 export const FullTable = styled.section`
@@ -43,7 +48,12 @@ export const FullTable = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: scroll;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 `;
 
 export const TableItems = styled.div`

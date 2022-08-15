@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Section = styled.section`
     min-height: 50px;
-    width: 244px;
+    width: 240px;
     background-color: white;
     display: flex;
     flex-wrap: wrap;
