@@ -38,6 +38,20 @@ export const TableName = styled.p`
     color: #F0E68C;
 `;
 
+export const Logout = styled.button`
+    background-color: #F0E68C;
+    color: #B22222;
+    height: 18px;
+    font-family: 'Secular One', sans-serif;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    align-items: center;
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
 export const NewTable = styled.button`
     background-color: #F0E68C;
     color: #B22222;
@@ -50,5 +64,4 @@ export const NewTable = styled.button`
     &:hover {
         cursor: pointer;
     }
-
 `;

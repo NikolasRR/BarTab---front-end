@@ -8,8 +8,13 @@ async function signUp(data) {
 }
 
 async function signIn(data) {
-	const response = await api.post(`/sign-in`, data, config);
+	const response = await api.post("/sign-in", data, config);
 	return response;
+}
+
+async function logout() {
+	const response = await api.post("/sign-off", {}, config);
+	return response
 }
 
 async function postTable(data) {
@@ -56,6 +61,7 @@ async function getParticipantsItems(tableId) {
 const requests = {
 	signUp,
 	signIn,
+	logout,
 	postTable,
 	getTable,
 	deleteTable,

@@ -43,11 +43,11 @@ function SignInScreen() {
         <Container>
             <LogInBar>
                 <Form onSubmit={ev => LogIn(ev)}>
-                    <Input placeholder="E-mail" value={user.email} type="email" onChange={ev => setUser({ ...user, email: ev.target.value })}></Input>
-                    <Input placeholder="Senha" value={user.password} type="password" onChange={ev => setUser({ ...user, password: ev.target.value })}></Input>
-                    <Button isDisabled={logginIn} disabled={logginIn} type="submit">Log In</Button>
+                    <Input placeholder="e-mail" value={user.email} type="email" onChange={ev => setUser({ ...user, email: ev.target.value })}></Input>
+                    <Input placeholder="password" value={user.password} type="password" onChange={ev => setUser({ ...user, password: ev.target.value })}></Input>
+                    <Button isDisabled={logginIn} disabled={logginIn} type="submit">log in</Button>
                 </Form>
-                <StyledLink to="/sign-up">First time? Create an account!</StyledLink>
+                <StyledLink to="/sign-up">first time? create an account!</StyledLink>
             </LogInBar>
         </Container>
 

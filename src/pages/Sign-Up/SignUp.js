@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
-import { CointainerSignUp, Inputs, Form, Input, Button } from "./style";
+import { CointainerSignUp, Inputs, Form, Input, Button, StyledLink } from "./style";
 import requests from "../../services/API/requests";
 
 function SignUp() {
     const [isloading, setIsLoading] = useState(false);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({ name: "", password: "", email: "" });
 
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ function SignUp() {
         try {
             await requests.signUp(user);
             navigate("/sign-in");
-            
+
         } catch (error) {
             if (error.response.status === 409) {
                 alert("E-mail ou UserName já cadastrado");
@@ -36,10 +36,10 @@ function SignUp() {
                     <Form onSubmit={e => handleRegister(e)}>
                         <Input type="email" placeholder="e-mail" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
                         <Input type="password" placeholder="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} />
-                        <Input type="text" placeholder="name" value={user.userName} onChange={(e) => setUser({ ...user, userName: e.target.value })} />
-                        <Button isDisabled={isloading} disabled={isloading} type="submit">Sign Up</Button>
+                        <Input type="text" placeholder="name" value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} />
+                        <Button isDisabled={isloading} disabled={isloading} type="submit">sign up</Button>
                     </Form>
-                    <StyledLink to="/">Already registered? Sign in</StyledLink>
+                    <StyledLink to="/sign-in">already registered? sign in</StyledLink>
                 </Inputs>
             </CointainerSignUp>
         </>
@@ -47,14 +47,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-const StyledLink = styled(Link)`
-    color: #ffff;
-    font-size: 20px;
-    line-height: 24px;
-    text-decoration: underline;
-    @media (max-width: 900px) {
-        font-size: 17px;
-        line-height: 20px;
-    }
-`;
