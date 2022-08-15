@@ -1,10 +1,39 @@
+import { useContext } from "react";
 import { FaReceipt } from "react-icons/fa";
-import { Logo } from "./style";
+import { useNavigate } from "react-router-dom";
 
-function Header(params) {
-    return (
+import TableDataContext from "../../contexts/tableContext";
+import requests from "../../services/API/requests";
+import { Current, Logo, NewTable, Options, TableName } from "./style";
+
+function Header() {
+    const { tableData, setTableData } = useContext(TableDataContext);
+    const navigate = useNavigate();
+
+    async function newTable() {
+        if(!window.confirm("you will lose your current table, continue?")) return;
+        try {
+            await requests.deleteTable();
+            setTableData({});
+            navigate("/");
+        } catch (error) {
+            alert("try again later");
+        }
+    }
+  
+    return (<>
         <Logo>BarTab<FaReceipt style={{ color: 'rgb(255,215,0)', fontSize: '50px' }} /></Logo>
-    )
+        {
+            tableData.name &&
+            <Current>
+                <Options>
+                    <TableName>Table: {tableData.name}</TableName>
+                    <NewTable onClick={() => newTable()}>new table</NewTable>
+                </Options>
+            </Current>
+        }
+
+    </>)
 }
 
 export default Header;

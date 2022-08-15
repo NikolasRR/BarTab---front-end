@@ -3,16 +3,15 @@ import styled from "styled-components";
 export const Main = styled.main`
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    height: calC(100vh - 100px);
+    height: calC(100vh - 120px);
     background-color: #EEE8AA;
 `;
 
 export const Instruction = styled.p`
     font-family: 'Secular One', sans-serif;
     color: #F95636;
-    margin-bottom: 5px;
+    margin: 40px 0 15px 0;
     font-size: 20px;
 `;
 
@@ -30,7 +29,7 @@ export const CreateSection = styled.section`
 `;
 
 export const Participants = styled.section`
-    height: 300px;
+    height: 250px;
     width: 250px;
     display: flex;
     align-items: center;

@@ -13,7 +13,6 @@ export const Box = styled.div`
     color: #2F4F4F;
     overflow-x: hidden;
     &:hover {
-        /* cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"}; */
         cursor: pointer;
     }
     background-color: ${({ selected }) => selected ? "#1E90FF" : "#F0E68C"};;

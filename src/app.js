@@ -10,6 +10,7 @@ import ParticipantsAddition from "./pages/AddParticipants/ParticipantsAddition.j
 import Header from "./components/Header/Header.js";
 import Persistency from "./services/Persistence/index.js";
 import ItemsAddition from "./pages/AddItems/ItemsAddition.js";
+import Tab from "./pages/Tab/Tab.js";
 
 function App() {
     const [tableData, setTableData] = useState({});
@@ -24,7 +25,7 @@ function App() {
                             <Route path="/" element={<TableStart />} />
                             <Route path="/participants" element={<ParticipantsAddition />} />
                             <Route path="/items" element={<ItemsAddition />} />
-                            <Route path="/tab" element={<TableStart />} />
+                            <Route path="/tab" element={<Tab />} />
                             <Route path="/sign-in" element={<SignInScreen />} />
                             <Route path="/sign-up" element={<SignUp />} />
                         </Routes>

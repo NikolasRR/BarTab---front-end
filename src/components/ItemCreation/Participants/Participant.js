@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Box } from "./style";
 
 function Participant({ participant, item }) {
-    console.log(item.participants);
     const [selected, setSelected] = useState(false);
     const [itemParticipantsState, setItemParticipantsState] = useState([...item.participants]);
 
@@ -13,7 +12,6 @@ function Participant({ participant, item }) {
 
     function addOrRemove() {
         if (alreadyAdded(item.participants, participant.id)) {
-            console.log("checkpoint");
             setItemParticipantsState([...item.participants.filter(p => !(p.id === participant.id))]);
         } else {
             setItemParticipantsState([...item.participants, { id: participant.id }]);

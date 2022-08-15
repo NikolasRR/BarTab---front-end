@@ -22,6 +22,11 @@ async function getTable() {
 	return response;
 }
 
+async function deleteTable() {
+	const response = await api.delete("/table", config);
+	return response;
+}
+
 async function postParticipants(tableId, data) {
 	const response = await api.post(`/participants/${tableId}/`, data, config);
 	return response;
@@ -42,16 +47,23 @@ async function getTableItems(tableId) {
 	return response;
 }
 
+async function getParticipantsItems(tableId) {
+	const response = await api.get(`/items/participants/${tableId}`, config);
+	return response;
+}
+
 
 const requests = {
 	signUp,
 	signIn,
 	postTable,
 	getTable,
+	deleteTable,
 	postParticipants,
 	getParticipants,
 	postItems,
-	getTableItems
+	getTableItems,
+	getParticipantsItems
 };
 
 export default requests;

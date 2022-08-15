@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const Main = styled.main`
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: calC(100vh - 100px);
+    height: calC(100vh - 120px);
     background-color: #EEE8AA;
 `;
 
@@ -14,6 +13,7 @@ export const Instruction = styled.p`
     color: #F95636;
     margin-bottom: 5px;
     font-size: 20px;
+    text-align: center;
 `;
 
 export const SecondaryInstructions = styled.p`
@@ -27,6 +27,7 @@ export const SecondaryInstructions = styled.p`
 export const CreateSection = styled.section`
     height: 400px;
     width: 250px;
+    margin-left: calc(50vw - 125px);
 `;
 
 export const Items = styled.section`
