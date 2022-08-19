@@ -19,7 +19,11 @@ export const NameAndTotal = styled.div`
 export const Name = styled.p`
     margin-left: 10px;
     font-size: 18px;
+    width: 140px;
     font-family: 'Secular One', sans-serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const Total = styled.p`

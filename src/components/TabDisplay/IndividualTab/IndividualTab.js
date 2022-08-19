@@ -14,7 +14,7 @@ function IndividualTab({ participant }) {
                 <Total>R$ {participant.total / 100}</Total>
             </NameAndTotal>
             <Div>
-                {items.map(item => <Item key={item.id} item={item} />)}
+                {items.map(item => <Item key={item.id} item={item} tabType={"individual"} />)}
             </Div>
         </ParticipantTab>
     )

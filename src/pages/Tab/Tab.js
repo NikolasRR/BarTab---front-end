@@ -53,7 +53,7 @@ function Tab() {
                     </Div>
                 <FullTable>
                     <TableItems>
-                        {tableItems.items.map(item => <Item key={item.id} item={item} />)}
+                        {tableItems.items.map(item => <Item key={item.id} item={item} tableType={"table"} />)}
                     </TableItems>
                 </FullTable>
                 <Button onClick={() => newTable()}>create new table</Button>

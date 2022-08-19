@@ -11,9 +11,15 @@ export const Box = styled.div`
     padding-left: 3px;
     font-family: 'Secular One', sans-serif;
     color: #2F4F4F;
-    overflow-x: hidden;
     &:hover {
         cursor: pointer;
     }
     background-color: ${({ selected }) => selected ? "#1E90FF" : "#F0E68C"};;
+`;
+
+export const Name = styled.p`
+    width: 50px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;

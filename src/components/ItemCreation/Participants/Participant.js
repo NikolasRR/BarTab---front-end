@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Box } from "./style";
+import { Box, Name } from "./style";
 
 function Participant({ participant, item }) {
     const [selected, setSelected] = useState(false);
@@ -29,7 +29,7 @@ function Participant({ participant, item }) {
 
     return (
         <Box onClick={() => { setSelected(!selected); addOrRemove() }} selected={selected}>
-            {participant.name}
+            <Name>{participant.name}</Name>
         </Box>
     )
 }
