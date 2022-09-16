@@ -40,9 +40,9 @@ function Header() {
                     <>
                         <TableName>Table: {tableData.name}</TableName>
                         <NewTable onClick={() => newTable()}>new table</NewTable>
+                        <Logout onClick={() => logout()}>logout</Logout>
                     </>
                 }
-                <Logout onClick={() => logout()}>logout</Logout>
             </Options>
         </Current>
     </>)
