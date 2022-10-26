@@ -4,7 +4,7 @@ export const Main = styled.main`
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: calC(100vh - 120px);
+    height: calC(100vh - 90px);
     background-color: #EEE8AA;
 `;
 

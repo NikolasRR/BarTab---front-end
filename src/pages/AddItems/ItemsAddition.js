@@ -1,15 +1,34 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ItemForm from "../../components/ItemCreation/ItemForm/ItemForm";
+import Participant from "../../components/ItemCreation/Participants/Participant";
 
 import TableDataContext from "../../contexts/tableContext";
 import requests from "../../services/API/requests";
-import { Button, ButtonSmall, CreateSection, Instruction, Main, Options, Items, SecondaryInstructions } from "./style";
+import {
+    Button,
+    ButtonSmall,
+    CreateSection,
+    Instruction,
+    Main,
+    Actions,
+    Items,
+    SecondaryInstructions,
+    Div,
+    Name,
+    Value,
+    Amount,
+    Form,
+    PlusMinusButtons,
+    Plus,
+    Minus
+} from "./style";
 
 function ItemsAddition() {
     const itemTemplate = { name: "", value: 0, amount: 1, participants: [] };
 
-    const [items, setItems] = useState([itemTemplate]);
+    const [items, setItems] = useState([]);
+    const [itemData, setItemData] = useState({ name: "", value: "", amount: "" });
     const [participants, setParticipants] = useState([]);
 
     const { tableData } = useContext(TableDataContext);
@@ -79,11 +98,26 @@ function ItemsAddition() {
                             />;
                         })}
                     </Items>
-                    <Options>
-                        <ButtonSmall onClick={() => setItems([...items, itemTemplate])}>add</ButtonSmall>
-                        <ButtonSmall onClick={() => setItems([...items.splice(0, items.length - 1)])}>remove last</ButtonSmall>
-                    </Options>
-                    <Button onClick={() => submitItems()}>proceed</Button>
+                    <Actions>
+                        <Form>
+                            <Name value={itemData.name} onChange={e => setItemData({ ...itemData, name: e.target.value })} placeholder="name"></Name>
+                            <Div>
+                                <Value pattern="^[0-9]*\.?[0-9]{0,2}$" value={itemData.value} onChange={e => setItemData(() => (e.target.validity.valid ? { ...itemData, value: e.target.value } : itemData))} type='text' placeholder="unitary value"></Value>
+                                <Amount>1</Amount>
+                                <PlusMinusButtons>
+                                    <Plus>+</Plus>
+                                    <Minus>-</Minus>
+                                </PlusMinusButtons>
+                            </Div>
+                            <Div>
+                                {participants.map(participant => <Participant key={participant.id} participant={participant} />)}
+                            </Div>
+                        </Form>
+                        <Button onClick={() => setItems([...items, itemTemplate])}>add</Button>
+                        <Button onClick={() => submitItems()}>proceed</Button>
+
+                    </Actions>
+
                 </CreateSection>
             </Main>
         </>
