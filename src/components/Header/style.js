@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Logo = styled.header`
-    height: 100px;
+    height: 70px;
     width: 100%;
     background-color: rgb(139,69,19);
     display: flex;
@@ -40,7 +40,7 @@ export const TableName = styled.p`
 
 export const Logout = styled.button`
     background-color: #F0E68C;
-    color: #B22222;
+    color: #2F435A;
     height: 18px;
     font-family: 'Secular One', sans-serif;
     border-radius: 5px;
@@ -54,7 +54,7 @@ export const Logout = styled.button`
 
 export const NewTable = styled.button`
     background-color: #F0E68C;
-    color: #B22222;
+    color: #2F435A;
     height: 18px;
     font-family: 'Secular One', sans-serif;
     border-radius: 5px;

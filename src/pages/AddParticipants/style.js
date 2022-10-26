@@ -4,7 +4,7 @@ export const Main = styled.main`
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 90px);
     background-color: #EEE8AA;
 `;
 
@@ -43,20 +43,20 @@ export const Participants = styled.section`
     scrollbar-width: none;  
 `;
 
-export const Options = styled.div`
+export const Actions = styled.div`
     height: 40px;
     width: 250px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin: 25px 0;
 `;
 
 export const ButtonSmall = styled.button`
-    width: 120px;
+    width: 50px;
     height: 40px;
     border: none;
     border-radius: 10px;
-    margin-top: 10px;
     font-family: 'Secular One', sans-serif;
     color: rgb(139,69,19);
     background-color: rgb(255,215,0);
@@ -81,4 +81,17 @@ export const Button = styled.button`
         cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"};
     }
     opacity: ${({ isDisabled }) => isDisabled ? "0.7" : "1"};
+`;
+
+export const Input = styled.input`
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: #F0E68C;
+    font-family: 'Secular One', sans-serif;
+    &:focus {
+        outline: none;
+    }
 `;

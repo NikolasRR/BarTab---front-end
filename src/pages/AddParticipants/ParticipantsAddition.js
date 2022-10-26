@@ -1,13 +1,24 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import ParticipantForm from "../../components/ParticipantsCreation/ParticipantForm";
+import ParticipantBox from "../../components/ParticipantsCreation/ParticipantForm";
 import TableDataContext from "../../contexts/tableContext";
 import requests from "../../services/API/requests";
-import { Button, ButtonSmall, CreateSection, Instruction, Main, Options, Participants, SecondaryInstructions } from "./style";
+import {
+    Button,
+    ButtonSmall,
+    CreateSection,
+    Instruction,
+    Main,
+    Participants,
+    Actions,
+    SecondaryInstructions,
+    Input
+} from "./style";
 
 function ParticipantsAddition() {
-    const [participants, setParticipants] = useState([{ name: "" }]);
+    const [participants, setParticipants] = useState([]);
+    const [inputName, setInputName] = useState("");
     const { tableData } = useContext(TableDataContext);
     const navigate = useNavigate();
 
@@ -39,6 +50,11 @@ function ParticipantsAddition() {
         }
     }
 
+    function addParticipant() {
+        setParticipants([...participants, { name: inputName }]);
+        setInputName("");
+    }
+
     return (
         <>
             <Main>
@@ -49,21 +65,24 @@ function ParticipantsAddition() {
                 </SecondaryInstructions>
                 <CreateSection>
                     <Participants>
-                        {participants.map((participant, index) => {
-                            return <ParticipantForm
-                                key={index}
-                                index={index}
-                                participants={participants}
-                                setParticipants={setParticipants}
-                                participant={participant}
-                            />;
-                        })}
+                        {participants.map((participant, index) => <ParticipantBox
+                            key={index}
+                            index={index}
+                            name={participant.name}
+                            participants={participants}
+                            setParticipants={setParticipants}
+                        />)}
                     </Participants>
-                    <Options>
-                        <ButtonSmall onClick={() => setParticipants([...participants, { name: "" }])}>add</ButtonSmall>
-                        <ButtonSmall onClick={() => setParticipants([...participants.splice(0, participants.length - 1)])}>remove last</ButtonSmall>
-                    </Options>
-                    <Button onClick={() => submitParticipants()}>proceed</Button>
+                    <Actions>
+                        <Input
+                            onChange={e => setInputName(e.target.value)}
+                            onKeyDown={e => { if (e.key === "Enter") addParticipant() }}
+                            value={inputName}
+                            placeholder="participant name"></Input>
+                        <ButtonSmall
+                            onClick={() => addParticipant()}>add</ButtonSmall>
+                        <Button onClick={() => submitParticipants()}>proceed</Button>
+                    </Actions>
                 </CreateSection>
             </Main>
         </>
