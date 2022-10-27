@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Box, Name } from "./style";
 
-function Participant({ participant, itemData, setItemData }) {
+function Participant({ participant, itemData, setItemData, signal }) {
     const [selected, setSelected] = useState(false);
 
     function changeSelectedState() {
@@ -10,11 +10,13 @@ function Participant({ participant, itemData, setItemData }) {
             let currentParticipants = [...itemData.participants];
             const index = currentParticipants.findIndex(current => current.id === participant.id);
             currentParticipants.splice(index, 1);
-            setItemData({...itemData, participants: [...currentParticipants]});
+            setItemData({ ...itemData, participants: [...currentParticipants] });
             return
         }
-        setItemData({...itemData, participants: [...itemData.participants, { id: participant.id }]});
+        setItemData({ ...itemData, participants: [...itemData.participants, { id: participant.id }] });
     }
+
+    useEffect(() => { if (signal) setSelected(false) }, [signal])
 
     return (
         <Box onClick={() => {

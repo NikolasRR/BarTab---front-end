@@ -27,13 +27,11 @@ function ItemsAddition() {
 	
 	const [items, setItems] = useState([]);
 	const [itemData, setItemData] = useState(itemTemplate);
-	const [selectedParticipants, setSelectedParticipants] = useState([]);
 	const [participants, setParticipants] = useState([]);
+	const [signal, setSignal] = useState(false);
 	
 	const { tableData } = useContext(TableDataContext);
 	const navigate = useNavigate();
-	
-	console.log(items);
 	
 	useEffect(() => {
 		async function getParticipants() {
@@ -48,7 +46,6 @@ function ItemsAddition() {
 	}, [tableData])
 
 	async function submitItems() {
-		if (!dataIsOk(items)) return;
 		if (window.confirm("make sure everything is correct, after proceeding, a change is not possible")) {
 
 			try {
@@ -63,20 +60,19 @@ function ItemsAddition() {
 		}
 	}
 
-	function dataIsOk(items) {
-		for (let i = 0; i < items.length; i++) {
-			if (items[i].name === "" || items[i].amount === "") {
-				alert("name and value cannot be empty");
-				return false;
-			}
-			if (items[i].participants.length === 0 || items[i].value === ("" || "0")) {
-				alert("must have at least 1 participant and 1 amount");
-				return false;
-			}
-
-			items[i].value = Number(items[i].value);
-			items[i].amount = Number(items[i].amount);
+	function verifyItemData() {
+		if(itemData.name.length <= 1){
+			alert("name too short");
+			return;
+		} 
+		if(itemData.value === "") {
+			alert("value cannot be empty");
+			return;
 		}
+		if(itemData.participants.length < 1) {
+			alert("must have at least 1 participant");
+			return;
+		} 
 		return true;
 	}
 
@@ -132,6 +128,7 @@ function ItemsAddition() {
 										participant={participant}
 										itemData={itemData}
 										setItemData={setItemData}
+										signal={signal}
 									/>
 								)}
 							</Div>
@@ -140,10 +137,14 @@ function ItemsAddition() {
 							color1={"rgb(139,69,19)"}
 							color2={"rgb(255,215,0)"}
 							onClick={() => {
-								setItemData({...itemData, participants: [...selectedParticipants]});
-								setItems([...items, itemData]);
-								setSelectedParticipants([]);
-								setItemData(itemTemplate);
+								if (verifyItemData()) {
+									setItems([...items, itemData]);
+									setSignal(true);
+									setTimeout(() => {
+										setSignal(false);
+									}, 1000);
+									setItemData(itemTemplate);
+								}
 							}}
 						>add</Button>
 						<Button

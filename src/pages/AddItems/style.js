@@ -120,6 +120,7 @@ export const Amount = styled.p`
     background-color: #F0E68C;
     color: #2F4F4F;
     font-family: 'Secular One', sans-serif;
+    font-size: 13px;
 `;
 
 export const AmountButtons = styled.div`
