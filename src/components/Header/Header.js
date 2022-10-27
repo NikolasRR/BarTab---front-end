@@ -38,7 +38,7 @@ function Header() {
                 {
                     tableData.name &&
                     <>
-                        <TableName>Table: {tableData.name}</TableName>
+                        <TableName>{tableData.name}</TableName>
                         <NewTable onClick={() => newTable()}>new table</NewTable>
                         <Logout onClick={() => logout()}>logout</Logout>
                     </>

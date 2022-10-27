@@ -9,7 +9,6 @@ export const Box = styled.div`
     margin-bottom: 3px;
     margin-right: 13.34px;
     font-size: 12px;
-    padding-left: 3px;
     font-family: 'Secular One', sans-serif;
     color: #2F4F4F;
     &:hover {
@@ -18,10 +17,12 @@ export const Box = styled.div`
     &:nth-child(4n) {
         margin-right: 0;
     }
-    background-color: ${({ selected }) => selected ? "#1E90FF" : "#F0E68C"};;
+    background-color: #F0E68C;
+    border: 2px solid ${({ selected }) => selected ? "#1E90FF" : "#F0E68C"};;
 `;
 
 export const Name = styled.p`
+    display: inline-block;
     width: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;

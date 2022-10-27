@@ -28,11 +28,10 @@ export const CreateSection = styled.section`
     height: 400px;
     width: 250px;
     margin-bottom: 10px;
-    
 `;
 
 export const Items = styled.section`
-    height: 130px;
+    height: 180px;
     width: 250px;
     display: flex;
     align-items: center;
@@ -46,7 +45,7 @@ export const Items = styled.section`
 `;
 
 export const Actions = styled.section`
-    height: 200px;
+    height: 190px;
     width: 250px;
     display: flex;
     flex-wrap: wrap;
@@ -55,7 +54,8 @@ export const Actions = styled.section`
 
 export const Form = styled.section`
     width: 250px;
-    min-height: 141px;
+    height: 100px;
+    background-color: #8B4513;
     border-radius: 10px;
     margin-bottom: 5px;
     display: flex;
@@ -63,41 +63,50 @@ export const Form = styled.section`
     align-items: center;
 `;
 
-export const Button = styled.button`
-    width: 250px;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 10px;
-    font-family: 'Secular One', sans-serif;
-    color: rgb(255,215,0);
-    background-color: rgb(139,69,19);
-    font-size: 15px;
-    &:hover {
-        cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"};
+export const Div = styled.div`
+    width: 220px;
+    height:41px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
     }
-    opacity: ${({ isDisabled }) => isDisabled ? "0.7" : "1"};
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 `;
 
 export const Name = styled.input`
-    width: 220px;
+    width: 100px;
     height: 40px;
-    margin: 6px 0 3px 0;
     border: none;
     border-radius: 10px;
+    margin-right: 7.5px;
     padding-left: 10px;
     background-color: #F0E68C;
+    color: #2F4F4F;
     font-family: 'Secular One', sans-serif;
     &:focus {
         outline: none;
     }
 `;
 
-export const Div = styled.div`
-    width: 220px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 3px;
+export const Value = styled.input`
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-right:7.5px;
+    color: #2F4F4F;
+    background-color: #F0E68C;
+    font-family: 'Secular One', sans-serif;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    &:focus {
+        outline: none;
+    }
 `;
 
 export const Amount = styled.p`
@@ -109,51 +118,44 @@ export const Amount = styled.p`
     display: flex;
     align-items: center;
     background-color: #F0E68C;
+    color: #2F4F4F;
     font-family: 'Secular One', sans-serif;
 `;
 
-export const Value = styled.input`
-    width: 120px;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    padding-left: 10px;
-    background-color: #F0E68C;
-    font-family: 'Secular One', sans-serif;
-    -webkit-appearance: none;
-    margin-right: 55px;
-    -moz-appearance: textfield;
-    &:focus {
-        outline: none;
-    }
-`;
-
-export const PlusMinusButtons = styled.div`
+export const AmountButtons = styled.div`
     width: 25px;
     height: 40px;
     display: flex;
     flex-wrap: wrap;
 `;
 
-export const Plus = styled.button`
+export const AmountButton = styled.button`
     width: 25px;
     height: 20px;
     border: none;
-    border-top-right-radius: 10px;
+    color: #2F4F4F;
     font-family: 'Secular One', sans-serif;
     background-color: #F0E68C;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
+    border-left: 1px solid #2F4F4F;
+    border-bottom: ${({ topRight }) => topRight ? "1px solid #2F4F4F" : 0};
+    border-top-right-radius: ${({ topRight }) => topRight ? topRight : 0};
+    border-bottom-right-radius: ${({ bottomRight }) => bottomRight ? bottomRight : 0};
+    &:hover {
+        cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"};
+    }
+    opacity: ${({ isDisabled }) => isDisabled ? "0.7" : "1"};
 `;
 
-export const Minus = styled.button`
-    width: 25px;
-    height: 20px;
+export const Button = styled.button`
+    width: 250px;
+    height: 40px;
     border: none;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
     font-family: 'Secular One', sans-serif;
-    background-color: #F0E68C;
-    border-left: 1px solid black;
+    color: ${({color1}) => color1};
+    background-color: ${({color2}) => color2};;
+    font-size: 15px;
     &:hover {
         cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"};
     }
