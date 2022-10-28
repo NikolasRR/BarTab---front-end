@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ItemForm from "../../components/ItemCreation/ItemForm/ItemForm";
+import ItemBox from "../../components/ItemCreation/Item/ItemBox";
 import Participant from "../../components/ItemCreation/Participants/Participant";
 
 import TableDataContext from "../../contexts/tableContext";
@@ -86,13 +86,15 @@ function ItemsAddition() {
 				</SecondaryInstructions>
 				<CreateSection>
 					<Items>
-						{/* {items.map((item, index) => {
-							return <ItemForm
+						{items.map((item, index) => {
+							return <ItemBox
 								key={index}
 								item={item}
-								participants={participants}
+								items={items}
+								setItems={setItems}
+								index={index}
 							/>;
-						})} */}
+						})}
 					</Items>
 					<Actions>
 						<Form>

@@ -19,7 +19,7 @@ export const Instruction = styled.p`
 export const SecondaryInstructions = styled.p`
     font-family: 'Secular One', sans-serif;
     color: #F95636;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 13px;
     text-align: center;
 `;
@@ -42,6 +42,7 @@ export const Items = styled.section`
     }
     -ms-overflow-style: none;  
     scrollbar-width: none;
+    margin-bottom: 10px;
 `;
 
 export const Actions = styled.section`

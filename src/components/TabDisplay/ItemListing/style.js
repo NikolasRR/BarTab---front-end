@@ -14,6 +14,7 @@ export const ItemAmount = styled.p`
 
 export const ItemName = styled.p`
     padding-left: 5px;
+    color: #2F4F4F;
     width: 120px;
     text-overflow: ellipsis;
     white-space: nowrap;
