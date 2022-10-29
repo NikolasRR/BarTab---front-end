@@ -13,7 +13,7 @@ function Participant({ participant, itemData, setItemData, signal }) {
             setItemData({ ...itemData, participants: [...currentParticipants] });
             return
         }
-        setItemData({ ...itemData, participants: [...itemData.participants, { id: participant.id }] });
+        setItemData({ ...itemData, participants: [...itemData.participants, { id: participant.id, name: participant.name }] });
     }
 
     useEffect(() => { if (signal) setSelected(false) }, [signal])

@@ -23,7 +23,7 @@ export const Section = styled.section`
 `;
 
 export const Amount = styled.p`
-    color: #20B2AA;
+    color: #F95636;
     margin: 0 5px;
     width: 78px;
     font-size: 13px;
@@ -38,7 +38,7 @@ export const Name = styled.p`
 `;
 
 export const Value = styled.p`
-    color: #B22222;
+    color: #359c35;
     width: 60px;
     font-size: 13px;
 `;

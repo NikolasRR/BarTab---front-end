@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
-import TableDataContext from  "./contexts/tableContext.js";
+import TableDataContext from "./contexts/tableContext.js";
+import ModalContext from "./contexts/modalContext.js";
 
 import SignUp from "./pages/Sign-Up/SignUp.js";
 import SignInScreen from "./pages/Sign-In/SignIn.js";
@@ -14,10 +15,12 @@ import Tab from "./pages/Tab/Tab.js";
 
 function App() {
     const [tableData, setTableData] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <>
             <TableDataContext.Provider value={{ tableData, setTableData }}>
+                <ModalContext.Provider value={{ isModalOpen, setIsModalOpen }}>
                     <BrowserRouter>
                         <Persistency />
                         <Header />
@@ -30,6 +33,7 @@ function App() {
                             <Route path="/sign-up" element={<SignUp />} />
                         </Routes>
                     </BrowserRouter>
+                </ModalContext.Provider>
             </TableDataContext.Provider>
         </>
     )

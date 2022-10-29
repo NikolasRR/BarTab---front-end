@@ -1,10 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import ItemBox from "../../components/ItemCreation/Item/ItemBox";
 import Participant from "../../components/ItemCreation/Participants/Participant";
+import Modal from "../../components/Modal/Modal";
 
+import ModalContext from "../../contexts/modalContext";
 import TableDataContext from "../../contexts/tableContext";
+
 import requests from "../../services/API/requests";
+
 import {
 	Button,
 	CreateSection,
@@ -24,15 +29,16 @@ import {
 
 function ItemsAddition() {
 	const itemTemplate = { name: "", value: "", amount: 1, participants: [] };
-	
+
 	const [items, setItems] = useState([]);
 	const [itemData, setItemData] = useState(itemTemplate);
 	const [participants, setParticipants] = useState([]);
 	const [signal, setSignal] = useState(false);
-	
+
 	const { tableData } = useContext(TableDataContext);
+	const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
 	const navigate = useNavigate();
-	
+
 	useEffect(() => {
 		async function getParticipants() {
 			try {
@@ -61,23 +67,27 @@ function ItemsAddition() {
 	}
 
 	function verifyItemData() {
-		if(itemData.name.length <= 1){
+		if (itemData.name.length <= 1) {
 			alert("name too short");
 			return;
-		} 
-		if(itemData.value === "") {
+		}
+		if (itemData.value === "") {
 			alert("value cannot be empty");
 			return;
 		}
-		if(itemData.participants.length < 1) {
+		if (itemData.participants.length < 1) {
 			alert("must have at least 1 participant");
 			return;
-		} 
+		}
 		return true;
 	}
 
 	return (
 		<>
+			{
+				isModalOpen &&
+				<Modal />
+			}
 			<Main>
 				<Instruction>last, add the items</Instruction>
 				<SecondaryInstructions>
@@ -152,7 +162,7 @@ function ItemsAddition() {
 						<Button
 							color1={"rgb(255,215,0)"}
 							color2={"rgb(139,69,19)"}
-							onClick={() => submitItems()}
+							onClick={() => setIsModalOpen(true)}
 						>proceed</Button>
 					</Actions>
 				</CreateSection>
