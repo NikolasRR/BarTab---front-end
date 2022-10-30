@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const ParticipantTab = styled.section`
-    min-height: 130px;
     width: 240px;
-    background-color: #D2691E;
+    background-color: #F0E68C;
     flex-direction: column;
     margin-bottom: 10px;
     border-radius: 15px;
@@ -21,6 +20,7 @@ export const Name = styled.p`
     font-size: 18px;
     width: 140px;
     font-family: 'Secular One', sans-serif;
+    color: #191970;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -30,7 +30,7 @@ export const Total = styled.p`
     margin-right: 10px;
     font-size: 18px;
     font-family: 'Secular One', sans-serif;
-    color: rgb(255,215,0);
+    color: 	#666600;
 `;
 
 export const Div = styled.div`

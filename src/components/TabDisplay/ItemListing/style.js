@@ -22,7 +22,7 @@ export const ItemName = styled.p`
 `;
 
 export const ItemTotal = styled.p`
-    color: #B22222;
+    color: #359c35;
     width: 80px;
     padding-left: 10px;
     text-overflow: ellipsis;

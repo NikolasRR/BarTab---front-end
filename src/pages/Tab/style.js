@@ -4,7 +4,7 @@ export const Main = styled.main`
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: calC(100% - 100px);
+    height: calC(100vh - 90px);
     background-color: #EEE8AA;
 `;
 
@@ -23,7 +23,6 @@ export const RunDown = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #F0E68C;
 `;
 
 
@@ -84,6 +83,7 @@ export const TotalValue = styled.p`
     width: 140px;
     padding-right: 5px;
     text-align: end;
+    color: 	#666600;
 `;
 
 export const Button = styled.button`

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import requests from "../../services/API/requests";
 
 import ModalContext from "../../contexts/modalContext";
@@ -23,7 +23,7 @@ function Modal({ submit, data, tableId, errorHandler, type }) {
         return true;
     }
 
-    async function submit(id, data, type) {
+    async function submitData(id, data, type) {
         if (verify(data)) {
             try {
                 if (type === "items") {
@@ -63,7 +63,7 @@ function Modal({ submit, data, tableId, errorHandler, type }) {
                         checkMode &&
                         <>
                             <CancelButton onClick={() => setIsModalOpen(false)}>check again</CancelButton>
-                            <GoButton onClick={() => submit(tableId, data, type)}>all good!</GoButton>
+                            <GoButton onClick={() => submitData(tableId, data, type)}>all good!</GoButton>
                         </>
                     }
                     {

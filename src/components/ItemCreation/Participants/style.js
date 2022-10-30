@@ -23,8 +23,7 @@ export const Box = styled.div`
 
 export const Name = styled.p`
     display: inline-block;
-    width: 50px;
-    text-overflow: ellipsis;
+    width: 40px;
     white-space: nowrap;
     overflow: hidden;
 `;

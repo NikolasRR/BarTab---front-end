@@ -1,20 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { Container, LogInBar, Form, Input, Button, StyledLink } from "./style"
+import Modal from "../../components/Modal/Modal";
+
 import requests from "../../services/API/requests";
+import ModalContext from "../../contexts/modalContext";
 
 function SignInScreen() {
     const navigate = useNavigate();
 
+    const {isModalOpen, setModalType, setErrorMessage, setIsModalOpen} = useContext(ModalContext);
+
     const [user, setUser] = useState({ email: "", password: "" });
     const [logginIn, setLogginIn] = useState(false);
 
-    async function LogIn (ev) {
+    function handleError(message) {
+		setModalType("error");
+		setErrorMessage(message);
+		setIsModalOpen(true);
+	}
+
+    async function LogIn(ev) {
         ev.preventDefault();
         setLogginIn(true);
-        if (user.email === "" || user.password === "") {
-            alert("Preencha os campos");
+        if (user.email === "" || user.password.length < 4) {
+            handleError("email and password of at least 4 characters required");
             setLogginIn(false);
             return;
         }
@@ -23,34 +34,28 @@ function SignInScreen() {
             navigate("/");
 
         } catch (error) {
-            if (error.response.status === 401) {
-                alert("Email ou senha incorretos");
-                setLogginIn(false);
-                return;
-            }
-            if (error.response.status === 422) {
-                alert("Verifique se escreveu os dados corretamente");
-                setLogginIn(false);
-                return;
-            }
-            alert("Algo deu errado, tente novamente mais tarde");
+            handleError(error.response.data);
             setLogginIn(false);
         }
-
     }
 
     return (
-        <Container>
-            <LogInBar>
-                <Form onSubmit={ev => LogIn(ev)}>
-                    <Input placeholder="e-mail" value={user.email} type="email" onChange={ev => setUser({ ...user, email: ev.target.value })}></Input>
-                    <Input placeholder="password" value={user.password} type="password" onChange={ev => setUser({ ...user, password: ev.target.value })}></Input>
-                    <Button isDisabled={logginIn} disabled={logginIn} type="submit">log in</Button>
-                </Form>
-                <StyledLink to="/sign-up">first time? create an account!</StyledLink>
-            </LogInBar>
-        </Container>
-
+        <>
+            {
+				isModalOpen &&
+				<Modal />
+			}
+            <Container>
+                <LogInBar>
+                    <Form onSubmit={ev => LogIn(ev)}>
+                        <Input placeholder="e-mail" value={user.email} type="email" onChange={ev => setUser({ ...user, email: ev.target.value })}></Input>
+                        <Input placeholder="password" value={user.password} type="password" onChange={ev => setUser({ ...user, password: ev.target.value })}></Input>
+                        <Button isDisabled={logginIn} disabled={logginIn} type="submit">log in</Button>
+                    </Form>
+                    <StyledLink to="/sign-up">first time? create an account!</StyledLink>
+                </LogInBar>
+            </Container>
+        </>
     )
 }
 
