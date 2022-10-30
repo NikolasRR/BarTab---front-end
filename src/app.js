@@ -16,11 +16,13 @@ import Tab from "./pages/Tab/Tab.js";
 function App() {
     const [tableData, setTableData] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     return (
         <>
             <TableDataContext.Provider value={{ tableData, setTableData }}>
-                <ModalContext.Provider value={{ isModalOpen, setIsModalOpen }}>
+                <ModalContext.Provider value={{ isModalOpen, setIsModalOpen, modalType, setModalType, errorMessage, setErrorMessage }}>
                     <BrowserRouter>
                         <Persistency />
                         <Header />

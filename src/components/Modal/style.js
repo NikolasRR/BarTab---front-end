@@ -37,34 +37,30 @@ export const Body = styled.div`
 export const Footer = styled.div`
     & > button {
         font-family: 'Secular One', sans-serif;
+        width: 134px;
+        height: 37px;
+        border-radius: 5px;
+        font-size: 18px;
+        line-height: 22px;
+        cursor: pointer;
     }
 `;
 
 export const CancelButton = styled.button`
-    width: 134px;
-    height: 37px;
-    left: 572px;
-    top: 508px;
     background-color: rgb(255,215,0);
-    border-radius: 5px;
-    font-size: 18px;
-    line-height: 22px;
+    margin-right: ${({ alone }) => alone ? 0 : "27px"};
     color: #8B4513;
-    cursor: pointer;
-    margin-right: 27px;
     border: none;
 `;
 
 export const GoButton = styled.button`
-    width: 134px;
-    height: 37px;
-    left: 733px;
-    top: 509px;
     background-color: #8B4513;
-    border-radius: 5px;
     border: 2px solid rgb(255,215,0);
-    font-size: 18px;
-    line-height: 22px;
     color: rgb(255,215,0);
-    cursor: pointer;
+`;
+
+export const OkButton = styled.button`
+    background-color: rgb(255,215,0);
+    color: #8B4513;
+    border: none;
 `;

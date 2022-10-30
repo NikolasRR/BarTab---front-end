@@ -39,7 +39,7 @@ export const Name = styled.p`
 
 export const Value = styled.p`
     color: #359c35;
-    width: 60px;
+    width: 55px;
     font-size: 13px;
 `;
 

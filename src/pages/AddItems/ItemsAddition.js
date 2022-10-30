@@ -1,15 +1,13 @@
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-import ItemBox from "../../components/ItemCreation/Item/ItemBox";
-import Participant from "../../components/ItemCreation/Participants/Participant";
-import Modal from "../../components/Modal/Modal";
 
 import ModalContext from "../../contexts/modalContext";
 import TableDataContext from "../../contexts/tableContext";
 
 import requests from "../../services/API/requests";
 
+import ItemBox from "../../components/ItemCreation/Item/ItemBox";
+import Participant from "../../components/ItemCreation/Participants/Participant";
+import Modal from "../../components/Modal/Modal";
 import {
 	Button,
 	CreateSection,
@@ -36,47 +34,38 @@ function ItemsAddition() {
 	const [signal, setSignal] = useState(false);
 
 	const { tableData } = useContext(TableDataContext);
-	const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
-	const navigate = useNavigate();
+	const { isModalOpen, setIsModalOpen, setModalType, setErrorMessage } = useContext(ModalContext);
+
+	function handleError(message) {
+		setModalType("error");
+		setErrorMessage(message);
+		setIsModalOpen(true);
+	}
 
 	useEffect(() => {
 		async function getParticipants() {
+			if(!tableData.id) return;
 			try {
 				const result = await requests.getParticipants(tableData.id);
 				setParticipants(result.data);
 			} catch (error) {
-
+				handleError(error.response.data);
 			}
 		}
 		getParticipants();
 	}, [tableData])
 
-	async function submitItems() {
-		if (window.confirm("make sure everything is correct, after proceeding, a change is not possible")) {
-
-			try {
-				await requests.postItems(tableData.id, items);
-				navigate("/tab");
-			} catch (error) {
-				if (error.response.data === "token invalid or expired") {
-					alert("session expired");
-					navigate("/sign-in");
-				}
-			}
-		}
-	}
-
 	function verifyItemData() {
 		if (itemData.name.length <= 1) {
-			alert("name too short");
+			handleError("name must have at least 2 characters");
 			return;
 		}
 		if (itemData.value === "") {
-			alert("value cannot be empty");
+			handleError("value cannot be empty");
 			return;
 		}
 		if (itemData.participants.length < 1) {
-			alert("must have at least 1 participant");
+			handleError("must have at least 1 participant");
 			return;
 		}
 		return true;
@@ -86,7 +75,7 @@ function ItemsAddition() {
 		<>
 			{
 				isModalOpen &&
-				<Modal />
+				<Modal errorHandler={handleError} data={items} tableId={tableData.id} />
 			}
 			<Main>
 				<Instruction>last, add the items</Instruction>
@@ -162,7 +151,15 @@ function ItemsAddition() {
 						<Button
 							color1={"rgb(255,215,0)"}
 							color2={"rgb(139,69,19)"}
-							onClick={() => setIsModalOpen(true)}
+							onClick={() => {
+								if (items.length >= 1) {
+									setModalType("check");
+								} else {
+									setModalType("error");
+									setErrorMessage("you need at least 1 item to continue!");
+								}
+								setIsModalOpen(true);
+							}}
 						>proceed</Button>
 					</Actions>
 				</CreateSection>
