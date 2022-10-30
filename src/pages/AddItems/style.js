@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const Main = styled.main`
     display: flex;
-    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 90px);
     background-color: #EEE8AA;
 `;
 
 export const Instruction = styled.p`
     font-family: 'Secular One', sans-serif;
     color: #F95636;
-    margin: 15px 0 5px 0;
+    margin: 30px 0 15px 0;
     font-size: 20px;
     text-align: center;
 `;
@@ -19,7 +19,7 @@ export const Instruction = styled.p`
 export const SecondaryInstructions = styled.p`
     font-family: 'Secular One', sans-serif;
     color: #F95636;
-    margin-bottom: 22px;
+    margin-bottom: 10px;
     font-size: 13px;
     text-align: center;
 `;
@@ -27,12 +27,11 @@ export const SecondaryInstructions = styled.p`
 export const CreateSection = styled.section`
     height: 400px;
     width: 250px;
-    margin-left: calc(50vw - 125px);
     margin-bottom: 10px;
 `;
 
 export const Items = styled.section`
-    height: 300px;
+    height: 180px;
     width: 250px;
     display: flex;
     align-items: center;
@@ -43,26 +42,106 @@ export const Items = styled.section`
     }
     -ms-overflow-style: none;  
     scrollbar-width: none;
-`;
-
-export const Options = styled.div`
-    height: 40px;
-    width: 250px;
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 10px;
 `;
 
-export const ButtonSmall = styled.button`
-    width: 120px;
+export const Actions = styled.section`
+    height: 190px;
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+`;
+
+export const Form = styled.section`
+    width: 250px;
+    height: 100px;
+    background-color: #8B4513;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const Div = styled.div`
+    width: 220px;
+    height:41px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+`;
+
+export const Name = styled.input`
+    width: 100px;
     height: 40px;
     border: none;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-right: 7.5px;
+    padding-left: 10px;
+    background-color: #F0E68C;
+    color: #2F4F4F;
     font-family: 'Secular One', sans-serif;
-    color: rgb(139,69,19);
-    background-color: rgb(255,215,0);
-    font-size: 15px;
+    &:focus {
+        outline: none;
+    }
+`;
+
+export const Value = styled.input`
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-right:7.5px;
+    color: #2F4F4F;
+    background-color: #F0E68C;
+    font-family: 'Secular One', sans-serif;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    &:focus {
+        outline: none;
+    }
+`;
+
+export const Amount = styled.p`
+    width: 20px;
+    height: 40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: #F0E68C;
+    color: #2F4F4F;
+    font-family: 'Secular One', sans-serif;
+    font-size: 13px;
+`;
+
+export const AmountButtons = styled.div`
+    width: 25px;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+export const AmountButton = styled.button`
+    width: 25px;
+    height: 20px;
+    border: none;
+    color: #2F4F4F;
+    font-family: 'Secular One', sans-serif;
+    background-color: #F0E68C;
+    border-left: 1px solid #2F4F4F;
+    border-bottom: ${({ topRight }) => topRight ? "1px solid #2F4F4F" : 0};
+    border-top-right-radius: ${({ topRight }) => topRight ? topRight : 0};
+    border-bottom-right-radius: ${({ bottomRight }) => bottomRight ? bottomRight : 0};
     &:hover {
         cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"};
     }
@@ -74,10 +153,10 @@ export const Button = styled.button`
     height: 40px;
     border: none;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-bottom: 10px;
     font-family: 'Secular One', sans-serif;
-    color: rgb(255,215,0);
-    background-color: rgb(139,69,19);
+    color: ${({color1}) => color1};
+    background-color: ${({color2}) => color2};;
     font-size: 15px;
     &:hover {
         cursor: ${({ isDisabled }) => isDisabled ? "default" : "pointer"};

@@ -5,7 +5,7 @@ export const CointainerSignUp = styled.main`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: calC(100vh - 120px);
+    height: calC(100vh - 90px);
     background-color: #EEE8AA;
 `;
 
