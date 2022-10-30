@@ -75,7 +75,7 @@ function ItemsAddition() {
 		<>
 			{
 				isModalOpen &&
-				<Modal errorHandler={handleError} data={items} tableId={tableData.id} />
+				<Modal errorHandler={handleError} data={items} tableId={tableData.id} type={"items"} />
 			}
 			<Main>
 				<Instruction>last, add the items</Instruction>
@@ -154,11 +154,10 @@ function ItemsAddition() {
 							onClick={() => {
 								if (items.length >= 1) {
 									setModalType("check");
+									setIsModalOpen(true);
 								} else {
-									setModalType("error");
-									setErrorMessage("you need at least 1 item to continue!");
+									handleError("you need at least 1 item to continue!");
 								}
-								setIsModalOpen(true);
 							}}
 						>proceed</Button>
 					</Actions>

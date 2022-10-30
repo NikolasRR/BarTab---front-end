@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+
+import ModalContext from "../../contexts/modalContext";
 
 import ParticipantBox from "../../components/ParticipantsCreation/ParticipantBox";
 import TableDataContext from "../../contexts/tableContext";
-import requests from "../../services/API/requests";
+import Modal from "../../components/Modal/Modal";
 import {
     Button,
     ButtonSmall,
@@ -19,44 +20,31 @@ import {
 function ParticipantsAddition() {
     const [participants, setParticipants] = useState([]);
     const [inputName, setInputName] = useState("");
+
     const { tableData } = useContext(TableDataContext);
-    const navigate = useNavigate();
+	const { isModalOpen, setIsModalOpen, setModalType, setErrorMessage } = useContext(ModalContext);
 
-    async function submitParticipants() {
-        if (participants.length <= 1) {
-            alert("at least 2 participants are required");
-            return;
-        }
-
-        if (window.confirm("make sure everything is correct, after proceeding, a change is not possible")) {
-            const hashTable = {};
-            for (let i = 0; i < participants.length; i++) {
-                if (hashTable[participants[i].name]) {
-                    alert("no repeated names are allowed!");
-                    return;
-                }
-                hashTable[participants[i].name] = true;
-            }
-
-            try {
-                await requests.postParticipants(tableData.id, participants);
-                navigate("/items");
-            } catch (error) {
-                if (error.response.data === "token invalid or expired") {
-                    alert("session expired");
-                    navigate("/sign-in");
-                }
-            }
-        }
-    }
+    function handleError(message) {
+		setModalType("error");
+		setErrorMessage(message);
+		setIsModalOpen(true);
+	}
 
     function addParticipant() {
+        if (inputName.length < 2) {
+            handleError("the name must have at least 2 characters");
+            return;
+        }
         setParticipants([...participants, { name: inputName }]);
         setInputName("");
     }
 
     return (
         <>
+            {
+				isModalOpen &&
+				<Modal errorHandler={handleError} data={participants} tableId={tableData.id} type={"participants"} />
+			}
             <Main>
                 <Instruction>now, add the participants</Instruction>
                 <SecondaryInstructions>
@@ -81,7 +69,15 @@ function ParticipantsAddition() {
                             placeholder="participant name"></Input>
                         <ButtonSmall
                             onClick={() => addParticipant()}>add</ButtonSmall>
-                        <Button onClick={() => submitParticipants()}>proceed</Button>
+                        <Button onClick={() => {
+                            if (participants.length > 1) {
+                                setModalType("check");
+								setIsModalOpen(true);
+                            } else {
+                                handleError("you need at least 2 participants to continue!");
+                            }
+
+                        }}>proceed</Button>
                     </Actions>
                 </CreateSection>
             </Main>

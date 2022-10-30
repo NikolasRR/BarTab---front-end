@@ -7,21 +7,41 @@ import { useNavigate } from "react-router-dom";
 
 import { ModalBackground, ModalContainer, Body, Footer, CancelButton, GoButton } from "./style"
 
-function Modal({ submit, data, tableId, errorHandler }) {
+function Modal({ submit, data, tableId, errorHandler, type }) {
     const { setIsModalOpen, modalType, errorMessage } = useContext(ModalContext);
-	const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    async function submit(id, data) {
-		try {
-			await requests.postItems(id, data);
-            setIsModalOpen(false);
-			navigate("/tab");
-		} catch (error) {
-            console.log("checkpoint");
-			errorHandler(error.response.data);
-		}
-	}
-    
+    function verify(data) {
+        const hashTable = {};
+        for (let i = 0; i < data.length; i++) {
+            if (hashTable[data[i].name]) {
+                errorHandler("repeated names are not allowed!");
+                return;
+            }
+            hashTable[data[i].name] = true;
+        }
+        return true;
+    }
+
+    async function submit(id, data, type) {
+        if (verify(data)) {
+            try {
+                if (type === "items") {
+                    await requests.postItems(id, data);
+                    navigate("/tab");
+                }
+                if (type === "participants") {
+                    await requests.postParticipants(id, data);
+                    navigate("/items");
+                }
+                setIsModalOpen(false);
+            } catch (error) {
+                console.log("checkpoint");
+                errorHandler(error.response.data);
+            }
+        }
+    }
+
     const checkMode = modalType === "check";
     const errorMode = modalType === "error";
 
@@ -43,7 +63,7 @@ function Modal({ submit, data, tableId, errorHandler }) {
                         checkMode &&
                         <>
                             <CancelButton onClick={() => setIsModalOpen(false)}>check again</CancelButton>
-                            <GoButton onClick={() => submit(tableId, data) }>all good!</GoButton>
+                            <GoButton onClick={() => submit(tableId, data, type)}>all good!</GoButton>
                         </>
                     }
                     {
