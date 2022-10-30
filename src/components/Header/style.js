@@ -31,11 +31,14 @@ export const Options = styled.div`
 `;
 
 export const TableName = styled.p`
+    width: 80px;
     font-size: 15px;
     font-family: 'Secular One', sans-serif;
-    display: flex;
-    align-items: center;
+    display: inline-block;
     color: #F0E68C;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const Logout = styled.button`

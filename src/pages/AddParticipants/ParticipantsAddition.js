@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import ParticipantBox from "../../components/ParticipantsCreation/ParticipantForm";
+import ParticipantBox from "../../components/ParticipantsCreation/ParticipantBox";
 import TableDataContext from "../../contexts/tableContext";
 import requests from "../../services/API/requests";
 import {

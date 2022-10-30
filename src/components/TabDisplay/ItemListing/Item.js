@@ -1,7 +1,7 @@
 import { Div, ItemAmount, ItemName, ItemTotal } from "./style";
 
 function Item({ item, tabType }) {
-    const denominator = tabType === "individual" ? (item.participantsAmount * 100) : 100;
+    const denominator = (tabType === "individual") ? (item.participantsAmount * 100) : 100;
     return (
         <Div>
             <ItemAmount>x{item.amount}</ItemAmount>
